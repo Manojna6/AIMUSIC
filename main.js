@@ -30,7 +30,7 @@ function draw() {
     //if cond.
     if(leftwristscore > 0.2){
         //circle with X&Y
-        circle(leftWristX, leftWristY, 20);
+        circle(lx, ly, 20);
         //stoping song2
         song2.stop();
         //if cond. for song1
