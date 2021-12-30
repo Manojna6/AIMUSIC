@@ -6,6 +6,8 @@ rx = 0;
 ry = 0;
 rightwristscore = 0;
 leftwristscore = 0;
+statusl = "";
+statusr = "";
 
 function preload() {
     song1 = loadSound("music.mp3");
@@ -22,8 +24,8 @@ function setup() {
 function draw() {
     //creating canvas
     image(video, 0, 0, 600, 500);
-    //song status + var
-    leftwristscore = song1.isPlaying();
+    //song1 status + var
+    statusl = song1.isPlaying();
     //circle code
     fill("#4230a6");
     stroke("#4230a6");
@@ -33,12 +35,29 @@ function draw() {
         circle(lx, ly, 20);
         //stoping song2
         song2.stop();
-        //if cond. for song1
+        //if cond. for playing song1
         if(song1 == false){
             //play song1
             song1.play();
             //update heading w/ song name
-            document.getElementById("songname").innerHTML = "Peterpan Song"
+            document.getElementById("songname").innerHTML = "Peterpan Song";
+        }
+    }
+    //right wrist code
+    //song2 status+var
+    statusr = song2.isPlaying();
+    //if cond.
+    if(rightwristscore > 0.2){
+        //circle X&Y
+        circle(rx, ry, 20);
+        //stop song1
+        song1.stop();
+        //if cond. play song2
+        if(song2 == false){
+            //play song2
+            song2.play();
+            //update song name
+            document.getElementById("songname").innerHTML = "Harry Potter Song";
         }
     }
 }
@@ -52,5 +71,6 @@ function gotPoses(results) {
         ly = results[0].pose.leftWrist.y;
         rx = results[0].pose.rightWrist.x;
         ry = results[0].pose.rightWrist.y;
+        results[0].pose.keypoints[10].score;
     }
 }
